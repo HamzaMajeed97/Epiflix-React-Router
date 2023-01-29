@@ -1,39 +1,66 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
-  text-align: center;
   background-color: black;
   min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.detailsCard1 {
+  background: none;
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.detailsCard2 {
+  background: none;
+  outline: none;
+  color: white;
+  left: -100px;
 }
 
-
-
-.App-link {
-  color: #61dafb;
+.detailButton {
+  background-color: rgb(229, 9, 20) !important;
+  border: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*poster*/
+
+.poster {
+  position: relative;
+  transition: transform 0.5s;
 }
 
+.arrows {
+  font-size: 40px;
+}
+.poster:hover {
+  cursor: pointer;
+  transform: scale(0.9);
+}
 
-.poster:hover{
+.gallery1,
+.gallery2,
+.gallery3 {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 
-cursor: pointer;
-transform: scale(1.1);
+.gallery1::-webkit-scrollbar {
+  display: none;
+}
 
+.gallery2::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery3::-webkit-scrollbar {
+  display: none;
 }

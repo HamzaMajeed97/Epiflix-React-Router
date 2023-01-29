@@ -1,13 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import "./App.css";
 import CustomNavbar from "./components/CustomNavbar";
-
-import Gallery1 from "./components/Gallery1";
-import Gallery2 from "./components/Gallery2";
-import Gallery3 from "./components/Gallery3";
-import TVShows from "./components/TVShows";
-import MovieDetails from "./components/MovieDetails"
+import MovieDetails from "./components/MovieDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -15,14 +13,9 @@ function App() {
       <div className="App">
         <CustomNavbar />
         <Routes>
-          <Route path="/tv-shows" element={<TVShows/>}   />
-<Route path="/detail/:movieid" element={<MovieDetails/>}/>
-          
+          <Route path="/details/:movieID" element={<MovieDetails />} />
+          <Route path="/" element={<Home />} />
         </Routes>
-
-        <Gallery1 movieSearch="harry%20potter" />
-        <Gallery2 />
-        <Gallery3 />
       </div>
     </BrowserRouter>
   );

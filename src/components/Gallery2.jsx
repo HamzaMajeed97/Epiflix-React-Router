@@ -1,58 +1,53 @@
 import { Component } from "react";
 import SingleMovie from "./SingleMovie";
-import { Container, Col } from "react-bootstrap";
-
-
+import { Container } from "react-bootstrap";
+import Slider from "react-slick";
 
 class Gallery2 extends Component {
+  state = {
+    movies: [],
+    key: "300e31da",
+  };
 
-    state = {
-        movieslist: [],
-      };
+  fetchfilm = async () => {
+    try {
+      let response = await fetch(
+        `http://www.omdbapi.com/?s=${this.props.movieSearch}&apikey=${this.state.key}`
+      );
 
-    componentDidMount() {
-        this.fetchfilm();
+      if (response.ok) {
+        let film = await response.json();
+        this.setState({ movies: film.Search });
       }
-    
-      fetchfilm = async () => {
-        try {
-          let response = await fetch("http://www.omdbapi.com/?s=Star+Wars&apikey=9a069d0a"
-          
-          );
-    
-          if (response.ok) {
-            let film = await response.json();
-            this.setState({ movieslist: film.Search });
-            console.log(this.state.movieslist);
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  componentDidMount() {
+    this.fetchfilm();
+  }
 
+  render() {
+    const settings = {
+      infinite: true,
+      speed: 500,
+      slidesToShow: 5,
+      slidesToScroll: 2,
+    };
 
-
-render () {
     return (
-        <div>
-  
-        <h2 className="title">{this.props.title}</h2>
-                <Container fluid className=' overlay d-flex align-items-center justify-content-center'>
-                    {this.state.movieslist.map((f) => (
-                        <Col className='poster'key={f.imdbID}>
-                            <SingleMovie movie={f} />
-                        </Col>
-                    ))}
-                </Container> 
-  
-        </div>
-    )
+      <div className="gallery2">
+        <Container style={{ maxWidth: "1360px" }}>
+          <Slider {...settings}>
+            {this.state.movies.map((f) => (
+              <SingleMovie className="poster" key={f.imdbID} movie={f} />
+            ))}
+          </Slider>
+        </Container>
+      </div>
+    );
+  }
 }
 
-
-
-}
-
-
-export default Gallery2
+export default Gallery2;

@@ -1,43 +1,50 @@
-import { Component } from "react";
-import { Card, Row, Col, Container, } from "react-bootstrap";
+import React, { Component } from "react";
+import { Container } from "react-bootstrap";
 import SingleMovie from "./SingleMovie";
-import { Carousel } from "react-bootstrap";
+import Slider from "react-slick";
 
 class Gallery1 extends Component {
   state = {
-    movieslist: [],
+    movies: [],
+    key: "300e31da",
+  };
+
+  fetchfilm = async () => {
+    try {
+      let response = await fetch(
+        `http://www.omdbapi.com/?s=${this.props.movieSearch}&apikey=${this.state.key}`
+      );
+      if (response.ok) {
+        let film = await response.json();
+        console.log(film); // funziona
+        this.setState({ movies: film.Search });
+      }
+    } catch (error) {
+      // console.log(error);
+    }
   };
 
   componentDidMount() {
     this.fetchfilm();
   }
 
-  fetchfilm = async () => {
-    try {
-      let response = await fetch("http://www.omdbapi.com/?apikey=9a069d0a&s=harry%20potter"
-      );
-
-      if (response.ok) {
-        let film = await response.json();
-        this.setState({ movieslist: film.Search });
-        console.log(this.state.movieslist);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   render() {
+    const settings = {
+      infinite: true,
+      speed: 500,
+      slidesToShow: 5,
+      slidesToScroll: 2,
+    };
+
     return (
-      <div>
-        <h2 className="title">{this.props.title}</h2>
-                <Container fluid className=' d-flex align-items-center justify-content-center'>
-                    {this.state.movieslist.map((f) => (
-                        <Col className='poster'key={f.imdbID}>
-                            <SingleMovie movie={f} />
-                        </Col>
-                    ))}
-                </Container>
+      <div className="gallery1">
+        <Container style={{ maxWidth: "1360px" }}>
+          <Slider {...settings}>
+            {this.state.movies.map((f) => (
+              <SingleMovie className="poster" key={f.imdbID} movie={f} />
+            ))}
+          </Slider>
+        </Container>
       </div>
     );
   }
