@@ -6,7 +6,7 @@ import Slider from "react-slick";
 class Gallery3 extends Component {
   state = {
     movies: [],
-    key: "300e31da",
+    key: process.env.REACT_APP_API_KEY,
   };
 
   componentDidMount() {
