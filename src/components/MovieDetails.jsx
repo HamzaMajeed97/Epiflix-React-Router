@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import Spinner from "./Spinner";
 
 const MovieDetails = () => {
   const params = useParams();
   console.log("params", params);
 
   const [movie, setMovie] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     console.log("componentDidMount chiamato");
