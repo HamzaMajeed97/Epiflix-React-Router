@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-
+import Spinner from "./Spinner";
 
 const MovieDetails = () => {
   const params = useParams();
   console.log("params", params);
 
-
-
   const [movie, setMovie] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     console.log("componentDidMount chiamato");
-   
 
     fetchMovieDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,7 +19,6 @@ const MovieDetails = () => {
 
   const fetchMovieDetails = async () => {
     try {
-      
       let response = await fetch(
         `http://www.omdbapi.com/?apikey=300e31da&i=${params.movieID}`
       );
@@ -41,22 +38,16 @@ const MovieDetails = () => {
     <Container>
       <Row className="justify-content-center my-3">
         <Col className="text-center" xs={12} md={6}>
-
-
-
-
           <Card style={{ width: "18rem" }} className="detailsCard1">
             <Card.Img variant="top" src={movie.Poster} />
             <Card.Body>
               <Card.Title>{movie.Title}</Card.Title>
-              <Card.Text>
-                Year:   {movie.Year}
-              </Card.Text>
+              <Card.Text>Year: {movie.Year}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Row>
-          <Col >
+          <Col>
             <Card style={{ width: "30rem" }} className="detailsCard2">
               <Card.Body>
                 <Card.Text>Release Date: {movie.Released}</Card.Text>
@@ -66,10 +57,8 @@ const MovieDetails = () => {
                 <Card.Text>Writers: {movie.Writer}</Card.Text>
                 <Card.Text>Actors: {movie.Actors}</Card.Text>
 
-                <Card.Text>Genre:   {movie.Genre}</Card.Text>
-                <Card.Text>
-                  Plot:    {movie.Plot}
-                </Card.Text>
+                <Card.Text>Genre: {movie.Genre}</Card.Text>
+                <Card.Text>Plot: {movie.Plot}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
