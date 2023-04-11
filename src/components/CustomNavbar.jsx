@@ -12,12 +12,16 @@ const CustomNavbar = () => {
     <Navbar style={{ backgroundColor: "black" }}>
       <Container>
         <Link to="/">
-          <Navbar.Brand>
-            <img
-              src={Logo}
-              style={{ width: "100px", height: "55px" }}
-              alt="logo"
-            />
+          <Navbar.Brand
+            style={{
+              color: "red",
+              fontSize: "2rem",
+              text: "bold",
+              fontWeight: "500",
+              fontStyle: "italic",
+            }}
+          >
+            Epiflix
           </Navbar.Brand>
         </Link>
         <Nav className="me-auto">
