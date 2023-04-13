@@ -18,7 +18,7 @@ const MovieDetails = () => {
   const fetchMovieDetails = async () => {
     try {
       let response = await fetch(
-        `http://www.omdbapi.com/?apikey=300e31da&i=${params.movieID}`
+        `https://www.omdbapi.com/?apikey=300e31da&i=${params.movieID}`
       );
       console.log("RESPONSE: ", response);
       if (response.ok) {
