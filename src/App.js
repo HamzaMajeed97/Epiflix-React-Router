@@ -12,6 +12,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <CustomNavbar />
+
         <Routes>
           <Route path="/details/:movieID" element={<MovieDetails />} />
           <Route path="/" element={<Home />} />

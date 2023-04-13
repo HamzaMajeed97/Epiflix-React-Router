@@ -16,7 +16,7 @@ class Gallery1 extends Component {
       );
       if (response.ok) {
         let film = await response.json();
-        console.log(film); // funziona
+
         this.setState({ movies: film.Search });
       }
     } catch (error) {

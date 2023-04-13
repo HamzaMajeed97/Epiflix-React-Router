@@ -10,7 +10,7 @@
 }
 
 .App {
-  background-color: black;
+  background-color: gray;
   min-height: 100vh;
 }
 
@@ -44,6 +44,13 @@
 .poster:hover {
   cursor: pointer;
   transform: scale(0.9);
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 150px;
 }
 
 .gallery1,
