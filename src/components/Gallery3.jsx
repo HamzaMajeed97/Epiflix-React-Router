@@ -16,7 +16,7 @@ class Gallery3 extends Component {
   fetchfilm = async () => {
     try {
       let response = await fetch(
-        `http://www.omdbapi.com/?s=${this.props.movieSearch}&apikey=${this.state.key}`
+        `https://www.omdbapi.com/?s=${this.props.movieSearch}&apikey=${this.state.key}`
       );
 
       if (response.ok) {
